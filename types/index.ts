@@ -1,5 +1,11 @@
 import { MouseEventHandler } from 'react';
 
+export interface CarDetailsProps {
+    car: CarProps;
+    closeModal: () => void;
+    isOpen: boolean;
+  }
+
 export interface CarProps {
     city_mpg: number;
     class: string;

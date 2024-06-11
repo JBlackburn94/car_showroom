@@ -10,7 +10,7 @@ interface carCardProps {
   car: CarProps;
 }
 
-const CarCard = ({ car }) => {
+const CarCard = ({ car }: carCardProps) => {
   const { city_mpg, year, make, model, transmission, drive } = car;
 
   const carRent = calculateCarRent(city_mpg, year);
@@ -72,7 +72,11 @@ const CarCard = ({ car }) => {
         </div>
       </div>
 
-      <CarDetails />
+      <CarDetails
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        car={car}
+      />
     </div>
   );
 };
