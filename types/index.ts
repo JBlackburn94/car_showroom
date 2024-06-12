@@ -1,5 +1,9 @@
 import { MouseEventHandler } from 'react';
 
+export interface SearchButtonProps {
+    otherClasses: string;
+}
+
 export interface CarDetailsProps {
     car: CarProps;
     closeModal: () => void;
