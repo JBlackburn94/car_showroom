@@ -22,16 +22,14 @@ const SearchBar = () => {
   const [manufacturer, setManufacturer] = useState("");
   const [model, setModel] = useState("");
   const router = useRouter();
+
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (manufacturer === "" && model === "") {
+    if (manufacturer.trim() === "" && model.trim() === "") {
       return alert("Please enter a manufacturer or model");
-    } else {
-      updateSearchParams(
-        model.toLocaleLowerCase(),
-        manufacturer.toLocaleLowerCase()
-      );
     }
+
+    updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
   };
 
   const updateSearchParams = (model: string, manufacturer: string) => {
