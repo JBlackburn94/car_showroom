@@ -26,12 +26,12 @@ const SearchBar = () => {
     e.preventDefault();
     if (manufacturer === "" && model === "") {
       return alert("Please enter a manufacturer or model");
+    } else {
+      updateSearchParams(
+        model.toLocaleLowerCase(),
+        manufacturer.toLocaleLowerCase()
+      );
     }
-
-    updateSearchParams(
-      model.toLocaleLowerCase(),
-      manufacturer.toLocaleLowerCase()
-    );
   };
 
   const updateSearchParams = (model: string, manufacturer: string) => {
@@ -53,7 +53,7 @@ const SearchBar = () => {
       window.location.pathname
     }?${searchParams.toString()}`;
 
-    router.push(newPathName);
+    router.push(newPathName, { scroll: false });
   };
 
   return (

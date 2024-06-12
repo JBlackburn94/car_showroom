@@ -1,5 +1,23 @@
 import { MouseEventHandler } from 'react';
 
+export interface CustomFilterProps {
+    title: string;
+    options: OptionProps[];
+}
+
+export interface OptionProps {
+    title: string;
+    value: string;
+}
+
+export interface FilterProps {
+    manufacturer: string;
+    model: string;
+    fuel: string;
+    year: number;
+    limit: number;
+}
+
 export interface SearchButtonProps {
     otherClasses: string;
 }

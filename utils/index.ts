@@ -1,4 +1,5 @@
-import { CarProps } from "@types";
+import { manufacturers } from "@constants";
+import { CarProps, FilterProps } from "@types";
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
   const basePricePerDay = 50; // Base rental price per day in dollars
@@ -15,14 +16,15 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
   return rentalRatePerDay.toFixed(0);
 };
 
-export async function fetchCars() {
+export async function fetchCars(filters: FilterProps) {
+  const { manufacturer, model, fuel, year, limit } = filters;
     const headers = {
         'x-rapidapi-key': process.env.REACT_APP_API_KEY,
         'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
       }
 
       const response = await fetch(
-        'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=bmw',
+        `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&fuel_type=${fuel}&limit=${limit}/`,
         {
           headers: headers,
         }
@@ -46,4 +48,14 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   url.searchParams.append("angle", `${angle}`);
 
   return `${url}`;
+}
+
+export const updateSearchParams = (type: string, value: string) => {
+  const currentPath = new URLSearchParams(window.location.search);
+
+    currentPath.set(type, value);
+
+    const updatedPathName = `${window.location.pathname}?${currentPath.toString()}`;
+
+    return updatedPathName;
 }
